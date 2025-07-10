@@ -43,9 +43,30 @@ console.log("Table workexperience created" + results)
 
 })
 
+connection.query("INSERT INTO workexperience(companyname, jobtitle, location)VALUES(?, ?, ?)", ["Sekant", "Säsongsarbete", "Malmö"], (error, results) => {
+if(error) throw error;
 
 
+})
 
+connection.query("INSERT INTO workexperience(companyname, jobtitle, location)VALUES(?, ?, ?)", ["Malmö stad", "Kontorsvaktmästare", "Malmö"], (error, results) => {
+if(error) throw error;
+
+
+})
+
+
+connection.query("INSERT INTO workexperience(companyname, jobtitle, location)VALUES(?, ?, ?)", ["Goveteran", "Diversearbetare ", "Höllviken"], (error, results) => {
+if(error) throw error;
+
+
+})
+
+connection.query("INSERT INTO workexperience(companyname, jobtitle, location)VALUES(?, ?, ?)", ["Kvällposten", "Tidningsbud ", "Skegrie"], (error, results) => {
+if(error) throw error;
+
+
+})
 /*
 connection.query("CREATE DATABASE webservice_moment2;", (error, results) => {
 if(error) throw error;
