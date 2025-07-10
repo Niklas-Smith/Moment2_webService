@@ -15,7 +15,8 @@ database: process.env.DB_DATABASE
 })
 
 app.use(cors());
-app.use(express.json())
+app.use(express.json());
+
 
 
 connection.connect((err) => {
@@ -37,9 +38,46 @@ app.get("/api/jobs", (req,res) => {
 res.json({message: "get jobs"})
 })
 
-app.post("/api/jobs", (req,res) => {
-res.json({message: "job is added to table"})
-})
+
+
+app.post("/api/jobs", (req, res) => {
+let companyname = req.body.companyname;
+let jobtitle = req.body.jobtitle;
+let location = req.body.location;
+
+let errors = {
+   message:"",
+  detail : "",
+  http_response: {
+
+  }
+};
+
+if(!companyname||!jobtitle||!location) {
+
+
+  errors.message = "companyname, jobtitle and location is not included"
+  errors.detail = "you need to input companyname, jobtitle and location in JSON"
+  errors.http_response.message = "bad request"
+   errors.http_response.code = 400;
+
+   res.status(400).json(errors);
+/*
+ res.status(400).json({error: "input companyname, jobtitle and location"});
+*/
+ return;
+}
+
+let jobinfo = {
+ companyname: companyname,
+jobtitle: jobtitle,
+location: location
+
+}
+res.json({message: "job is added to table" , jobinfo});
+});
+
+
 
 app.put("/api/jobs/:id", (req,res) => {
 res.json({message: "uppdate job " + req.params.id})
@@ -54,3 +92,16 @@ app.listen(port, () => {
 console.log("server is on port: " + port)
 
 })
+
+
+
+/*
+{ 
+  "companyname": "test" ,
+  "jobtitle": "test2" ,
+  "location":  "test3"
+}
+
+
+add jobb
+*/
